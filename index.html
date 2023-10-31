@@ -927,59 +927,6 @@
 			</div>
 		</div>
 	</div>
-	<?php
-		if (isset($_POST['submit'])) {
-			echo "<section class='form-success'>";
-			echo "<div class='form-success__body'>";
-			echo "<h2 class='form-success__title'>Спасибо за заявку!</h2>";
-			echo "<div class='form-success__image'>";
-			echo "<img src='img/success-form/figure-success.png' alt=''>";
-			echo "</div>";
-			echo "<a class='form-success__link' href='index.php'>Назад</a>";
-			echo "</div>";
-			echo "</section>";
-
-			$name = $_POST['input-name'];
-			$phone = $_POST['input-phone'];
-			$subject = $_POST['input-subject'];
-			$select = $_POST['service-select'];
-			$link = '@Zhumabaev_TN';
-
-
-			function parser($url) {
-				$curl = curl_init();
-				curl_setopt($curl, CURLOPT_URL, $url);
-				curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-				$result = curl_exec($curl);
-				if($result == false) {
-					echo "Ошибка отправки запроса: " . curl_error($curl);
-					return false;
-				} else {
-					return true;
-
-
-				}
-			}
-
-			function orderSendTelegram($message) {
-				$token = "5653817837:AAHwz1BWKQ2u4ZSLwCqLhbffIcNXLHnj5yI";
-
-				$chat_id = "-1001892962082";
-
-				parser("https://api.telegram.org/bot{$token}/sendMessage?chat_id={$chat_id}&parse_mode=html&text={$message}");
-			}
-
-			$textMessage .= "\n<b>Имя: </b>".$name."\n";
-			$textMessage .= "<b>Номер: </b>".$phone."\n";
-			$textMessage .= "\n<b>Писать сюда: </b>".$link."\n";
-
-			$textMessage .= "<b>Предмет: </b>".$subject."\n";
-			$textMessage .= "<b>Услуга: </b>".$select."\n";
-			$textMessage = urlencode($textMessage);
-
-			orderSendTelegram($textMessage);
-		}     
-    ?>
 	<script src="js/app.min.js?_v=20221103184945"></script>
 </body>
 
